@@ -1,0 +1,6 @@
+Flask
+pandas
+langchain
+langchain-google-genai
+langchain-community
+faiss-cpu
