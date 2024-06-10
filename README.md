@@ -47,6 +47,7 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 1. Run the Flask app by executing the following command in your terminal:
 
    ```sh
+   cd path/to/project
    python api.py
    ```
 
