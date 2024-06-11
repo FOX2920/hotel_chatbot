@@ -7,21 +7,26 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain import PromptTemplate
 import pandas as pd
+from dotenv import load_dotenv
 
+# Tải các biến môi trường từ file .env
+load_dotenv()
 
+# Khởi tạo mô hình ngôn ngữ Gemini-pro
 llm = ChatGoogleGenerativeAI(model="gemini-pro")
 
+# Khởi tạo ứng dụng Flask
 app = Flask(__name__)
 
-llm = ChatGoogleGenerativeAI(model="gemini-pro")
-
 def get_text_chunks(text):
+    # Khởi tạo công cụ chia văn bản thành các đoạn nhỏ
     text_splitter = CharacterTextSplitter(
-        separator="\n",
-        chunk_size=1000,
-        chunk_overlap=200,
-        length_function=len
+        separator="\n",   # Tách văn bản theo ký tự xuống dòng
+        chunk_size=1000,  # Kích thước mỗi đoạn văn bản
+        chunk_overlap=200, # Phần chồng lấn giữa các đoạn
+        length_function=len # Hàm đo độ dài đoạn văn bản
     )
+    # Chia văn bản thành các đoạn nhỏ
     chunks = text_splitter.split_text(text)
     return chunks
 
@@ -41,10 +46,10 @@ def generate_answer(query):
     - Email: NThotel@gmail.com
     - SĐT: + 01 234 567 88
 
-
     ### Thông tin về phòng khách sạn:
     """
 
+    # Thêm thông tin về các loại phòng từ file CSV
     for index, row in room_df.iterrows():
         prompt += f"""
     1. **{row['room_type']}**
@@ -55,6 +60,7 @@ def generate_answer(query):
 
     prompt += "\n### Thông tin về nhà hàng trong khách sạn:\n"
 
+    # Thêm thông tin về các nhà hàng từ file CSV
     for index, row in restaurant_df.iterrows():
         prompt += f"""
     1. **{row['name']}**
@@ -68,6 +74,7 @@ def generate_answer(query):
     prompt += """\nLưu ý: Nếu dữ liệu là tiếng Anh, bạn có thể dịch sang tiếng Việt để hiểu rõ hơn.
     """
 
+    # Khởi tạo mô hình nhúng văn bản từ Google Generative AI
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
     # Lấy văn bản gốc từ thông tin khách sạn
@@ -75,8 +82,7 @@ def generate_answer(query):
     # Chia văn bản thành các đoạn nhỏ
     text_chunks = get_text_chunks(raw_text)
 
-    # Tạo kho lưu trữ vector
-    #vectorstore = get_vectorstore(text_chunks)
+    # Tạo kho lưu trữ vector từ các đoạn văn bản và nhúng văn bản
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
 
     # Tạo bộ truy vấn từ kho vector, tìm kiếm 3 kết quả gần nhất
@@ -94,28 +100,31 @@ def generate_answer(query):
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
     # Tạo chuỗi truy vấn hội thoại với bộ nhớ, sử dụng mô hình ngôn ngữ và bộ truy vấn
-    qah_chain = ConversationalRetrievalChain.from_llm(llm=llm,
-                                                    retriever=db,
-                                                    return_source_documents=False,
-                                                    verbose=True,
-                                                    memory=memory,
-                                                    combine_docs_chain_kwargs={'prompt': prompt_qah},
-                                                    condense_question_prompt=prompt_qah_1)
+    qah_chain = ConversationalRetrievalChain.from_llm(
+        llm=llm,
+        retriever=db,
+        return_source_documents=False,
+        verbose=True,
+        memory=memory,
+        combine_docs_chain_kwargs={'prompt': prompt_qah},
+        condense_question_prompt=prompt_qah_1
+    )
 
-    sol=qah_chain({"question": query})
+    # Thực hiện truy vấn và lấy kết quả trả lời
+    sol = qah_chain({"question": query})
 
     return sol['answer']
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    data = request.get_json()
-    question = data.get('question')
+    data = request.get_json()  # Lấy dữ liệu JSON từ yêu cầu POST
+    question = data.get('question')  # Lấy câu hỏi từ dữ liệu JSON
     
-    if not question:
-        return jsonify({'error': 'No question provided'}), 400
+    if not question:  # Kiểm tra nếu không có câu hỏi
+        return jsonify({'error': 'No question provided'}), 400  # Trả về lỗi 400
     
-    result = generate_answer(question)
-    return jsonify({'answer': result})
+    result = generate_answer(question)  # Tạo câu trả lời cho câu hỏi
+    return jsonify({'answer': result})  # Trả về câu trả lời dưới dạng JSON
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080, use_reloader=False)
+    app.run(debug=True, port=8080, use_reloader=False)  # Chạy ứng dụng Flask
