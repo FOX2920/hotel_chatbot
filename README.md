@@ -8,7 +8,7 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 - Anaconda/Miniconda installed
 - Python 3.10.14
 - Necessary CSV files: `room.csv` and `restaurant.csv`
-
+- Gemini API key: Get it from [Google AI Studio](https://ai.google.dev/tutorials/setup?hl=tr)
 ## Setup
 
 ### Step 1: Create a Conda Environment
