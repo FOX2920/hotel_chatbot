@@ -80,9 +80,9 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 
 6. In the Headers section, add a new header:
 
-+ Key: Content-Type
-
-+ Value: application/json
+    + Key: Content-Type
+    
+    + Value: application/json
 
 7. In the Body section, select the raw option and choose JSON (application/json) from the dropdown menu.
 
