@@ -1,5 +1,9 @@
 # Hotel Assistant Chatbot
-![445544792_1144653043447379_8030659370389803081_n](https://github.com/FOX2920/hotel_chatbot/assets/91709267/9a104692-1a68-44d4-a52c-e971f906d3c2)
+<p align="center">
+  <img src="https://github.com/FOX2920/hotel_chatbot/assets/91709267/9a104692-1a68-44d4-a52c-e971f906d3c2" alt="Mô tả ảnh">
+</p>
+
+
 This project implements a Hotel Assistant Chatbot using Flask, Google Generative AI Embeddings, FAISS, and LangChain. The chatbot provides information about hotel rooms and restaurants based on data from CSV files.
 
 ## Prerequisites
@@ -68,13 +72,32 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 
 ### Step 2: Interact with the Chatbot
 
-3. You can interact with the chatbot by sending HTTP requests to the server. Use an API client like Postman or `curl` to send requests.
+3. Open Postman.
 
-   Example `curl` request:
+4. Set the request type to POST.
 
-   ```sh
-   curl -X POST http://127.0.0.1:8080/chat -H "Content-Type: application/json" -d '{"question": "Tôi có gia đình 4 người thì nên thuê phòng nào?"}'
-   ```
+5. Enter the request URL: http://127.0.0.1:8080/chat
+
+6. In the Headers section, add a new header:
+
++ Key: Content-Type
+
++ Value: application/json
+
+7. In the Body section, select the raw option and choose JSON (application/json) from the dropdown menu.
+
+8. Enter your JSON request body in the text area. For example:
+
+```json
+{
+    "question": "Tôi có gia đình 4 người thì nên thuê phòng nào?"
+}
+```
+9. Click the Send button.You should receive a response from the chatbot in the Response Body section of Postman.
+ 
+<p align="center">
+  <img src="https://github.com/FOX2920/hotel_chatbot/assets/91709267/202adf07-f7ae-49c2-8488-2389c5a82f45" alt="Mô tả ảnh">
+</p>
 
 ## Project Structure
 
