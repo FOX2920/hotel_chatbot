@@ -46,7 +46,7 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 6. Create a `.env` file in the project directory with the following content:
 
    ```dotenv
-   GEMINI_API_KEY=your_gemini_api_key_here
+   GOOGLE_API_KEY="YOUR_API_KEY"
    ```
 
 ## Running the Chatbot
