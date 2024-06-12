@@ -1,4 +1,3 @@
-
 # Hotel Assistant Chatbot
 
 This project implements a Hotel Assistant Chatbot using Flask, Google Generative AI Embeddings, FAISS, and LangChain. The chatbot provides information about hotel rooms and restaurants based on data from CSV files.
@@ -9,6 +8,8 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 - Python 3.10.14
 - Necessary CSV files: `room.csv` and `restaurant.csv`
 - Gemini API key: Get it from [Google AI Studio](https://ai.google.dev/tutorials/setup?hl=tr)
+- Create a `.env` file with your Gemini API key and other necessary environment variables
+
 ## Setup
 
 ### Step 1: Create a Conda Environment
@@ -40,6 +41,14 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 
 5. Ensure you have the `room.csv` and `restaurant.csv` files in the project directory.
 
+### Step 5: Set Up Environment Variables
+
+6. Create a `.env` file in the project directory with the following content:
+
+   ```dotenv
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
 ## Running the Chatbot
 
 ### Step 1: Start the Flask Application
@@ -64,7 +73,7 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
    Example `curl` request:
 
    ```sh
-   curl -X POST http://127.0.0.1:8080/chat -H "Content-Type: application/json" -d '{"message": "Tôi có gia đình 4 người thì nên thuê phòng nào?"}'
+   curl -X POST http://127.0.0.1:8080/chat -H "Content-Type: application/json" -d '{"question": "Tôi có gia đình 4 người thì nên thuê phòng nào?"}'
    ```
 
 ## Project Structure
@@ -73,6 +82,7 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 - `requirements.txt`: List of required Python packages.
 - `room.csv`: CSV file containing information about hotel rooms.
 - `restaurant.csv`: CSV file containing information about hotel restaurants.
+- `.env`: Environment variables file.
 
 ## Requirements
 
@@ -85,6 +95,7 @@ langchain
 langchain-google-genai
 langchain-community
 faiss-cpu
+python-dotenv
 ```
 
 ## Acknowledgments
@@ -96,5 +107,6 @@ This project uses the following libraries and services:
 - [LangChain](https://github.com/hwchase17/langchain)
 - [Google Generative AI Embeddings](https://github.com/langchain-ai/langchain)
 - [FAISS](https://github.com/facebookresearch/faiss)
+- [python-dotenv](https://github.com/theskumar/python-dotenv)
 
 Feel free to reach out if you have any questions or need further assistance!
