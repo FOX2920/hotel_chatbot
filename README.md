@@ -1,5 +1,5 @@
 # Hotel Assistant Chatbot
-
+![445544792_1144653043447379_8030659370389803081_n](https://github.com/FOX2920/hotel_chatbot/assets/91709267/9a104692-1a68-44d4-a52c-e971f906d3c2)
 This project implements a Hotel Assistant Chatbot using Flask, Google Generative AI Embeddings, FAISS, and LangChain. The chatbot provides information about hotel rooms and restaurants based on data from CSV files.
 
 ## Prerequisites
