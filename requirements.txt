@@ -4,3 +4,5 @@ langchain
 langchain-google-genai
 langchain-community
 faiss-cpu
+chardet
+python-dotenv
