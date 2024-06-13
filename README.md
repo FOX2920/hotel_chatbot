@@ -37,7 +37,9 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
    pip install -r requirements.txt
    ```
 
-### Step 4: Prepare CSV Files: Ensure you have the `room.csv` and `restaurant.csv` files in the project directory.
+### Step 4: Prepare CSV Files
+
+Ensure you have the `room.csv` and `restaurant.csv` files in the project directory.
 
 ### Step 5: Set Up Environment Variables
 
