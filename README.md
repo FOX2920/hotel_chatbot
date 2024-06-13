@@ -1,6 +1,6 @@
 # Hotel Assistant Chatbot
 <p align="center">
-  <img src="https://github.com/FOX2920/hotel_chatbot/assets/91709267/9a104692-1a68-44d4-a52c-e971f906d3c2" alt="Mô tả ảnh">
+  <img src="https://github.com/FOX2920/hotel_chatbot/assets/91709267/9a104692-1a68-44d4-a52c-e971f906d3c2" alt="Pineline">
 </p>
 
 
@@ -27,27 +27,21 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 
 ### Step 2: Activate the Environment
 
-3. Activate your new environment:
-
    ```sh
    conda activate hotel-assistant
    ```
 
 ### Step 3: Install Required Packages
 
-4. Install the necessary packages using `pip`:
-
    ```sh
    pip install -r requirements.txt
    ```
 
-### Step 4: Prepare CSV Files
-
-5. Ensure you have the `room.csv` and `restaurant.csv` files in the project directory.
+### Step 4: Prepare CSV Files: Ensure you have the `room.csv` and `restaurant.csv` files in the project directory.
 
 ### Step 5: Set Up Environment Variables
 
-6. Create a `.env` file in the project directory with the following content:
+  Create a `.env` file in the project directory with the following content:
 
    ```dotenv
    GOOGLE_API_KEY="YOUR_API_KEY"
@@ -60,7 +54,7 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 1. Run the Flask app by executing the following command in your terminal:
 
    ```sh
-   cd path/to/project
+   cd path/to/hotel_chatbot
    python api.py
    ```
 
@@ -72,31 +66,30 @@ This project implements a Hotel Assistant Chatbot using Flask, Google Generative
 
 ### Step 2: Interact with the Chatbot
 
-3. Open Postman.
+1. Open Postman.
 
-4. Set the request type to POST.
+2. Set the request type to POST.
 
-5. Enter the request URL: http://127.0.0.1:8080/chat
+3. Enter the request URL: http://127.0.0.1:8080/chat
 
-6. In the Headers section, add a new header:
-
+4. In the Headers section, add a new header:
+```sh
     + Key: Content-Type
-    
     + Value: application/json
+```
+5. In the Body section, select the raw option and choose JSON (application/json) from the dropdown menu.
 
-7. In the Body section, select the raw option and choose JSON (application/json) from the dropdown menu.
-
-8. Enter your JSON request body in the text area. For example:
+6. Enter your JSON request body in the text area. For example:
 
 ```json
 {
     "question": "Tôi có gia đình 4 người thì nên thuê phòng nào?"
 }
 ```
-9. Click the Send button.You should receive a response from the chatbot in the Response Body section of Postman.
+7. Click the Send button.You should receive a response from the chatbot in the Response Body section of Postman.
  
 <p align="center">
-  <img src="https://github.com/FOX2920/hotel_chatbot/assets/91709267/202adf07-f7ae-49c2-8488-2389c5a82f45" alt="Mô tả ảnh">
+  <img src="https://github.com/FOX2920/hotel_chatbot/assets/91709267/202adf07-f7ae-49c2-8488-2389c5a82f45" alt="Test">
 </p>
 
 ## Project Structure
