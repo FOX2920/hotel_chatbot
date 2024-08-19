@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import CharacterTextSplitter
@@ -8,6 +8,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain import PromptTemplate
 import pandas as pd
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 # Tải các biến môi trường từ file .env
 load_dotenv()
@@ -17,6 +18,11 @@ llm = ChatGoogleGenerativeAI(model="gemini-pro")
 
 # Khởi tạo ứng dụng Flask
 app = Flask(__name__)
+CORS(app) 
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 def get_text_chunks(text):
     # Khởi tạo công cụ chia văn bản thành các đoạn nhỏ
@@ -127,4 +133,4 @@ def chat():
     return jsonify({'answer': result})  # Trả về câu trả lời dưới dạng JSON
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080, use_reloader=False)  # Chạy ứng dụng Flask
+    app.run(host='0.0.0.0', debug=True, use_reloader=False)
